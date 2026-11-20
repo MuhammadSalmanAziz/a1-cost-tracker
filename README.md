@@ -147,42 +147,22 @@ GROQ_OUTPUT_PRICE_PER_M = 0.08
 
 ---
 
-## Project files
+## Results.json sample
+Here is the example 1 provider 1 output stored in results.json
 
 ```
-llm-tracker/
-├── tracker.py     # the whole script
-├── .env           # your keys and model names (keep this private!)
-└── results.json   # created automatically after you run the script
+{
+        "prompt_no": 1,
+        "prompt": "what is LLM",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "reply": "An **LLM** stands for **Large Language Model**.\n\nAt its simplest, an LLM is a type of artificial intelligence trained ......",
+        "input_tokens": 5,
+        "output_tokens": 650,
+        "input_price_per_m": 0.25,
+        "output_price_per_m": 1.5,
+        "cost_usd": 0.0009762499999999999
+    },
 ```
 
 ---
-
-## Common problems
-
-**"uv is not recognized" or "command not found"**
-`uv` isn't installed yet, or you need to reopen your terminal after installing it.
-
-**The script says my prompt is missing**
-You forgot to give the first prompt. Run it like `uv run tracker.py "your prompt"`.
-
-**An error about the API key or a 401 / 403 error**
-Check your `.env` file. Make sure the names match exactly (`Genai_API_Key`, `Groq_Key`), there are no spaces around the `=`, and the keys are correct.
-
-**An error saying the model was not found (404)**
-The model name in `.env` is wrong, or that model was removed. Check the provider's model list for the current names.
-
-**A 429 error**
-You hit the rate limit of the free tier. Wait a minute and try again.
-
-**`results.json` is empty or missing**
-The file is only saved at the very end. If an error stops the script halfway, nothing gets saved. Fix the error and run it again.
-
----
-
-## Things I might add later
-
-- Save results after every prompt, so a crash doesn't lose anything
-- Rewrite it using classes (OOP) once the function version is working well
-- Add more providers
-- Draw a chart that compares the costs
